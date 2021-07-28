@@ -17,9 +17,9 @@ import io.renren.utils.GenUtils;
 import io.renren.utils.PageUtils;
 import io.renren.utils.Query;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +33,7 @@ import java.util.zip.ZipOutputStream;
 @Service
 public class SysGeneratorService {
 
-    @Resource
+    @Autowired
     private GeneratorDao generatorDao;
 
     public PageUtils queryList(Query query) {

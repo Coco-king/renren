@@ -30,9 +30,9 @@ public class ${className}Entity implements Serializable {
 
     /** $column.comments */
 	#if($column.columnName == $pk.columnName)
-    @TableId
+@TableId
 	#end
-    private $column.attrType $column.attrname;
+private $column.attrType $column.attrname;
 #end
 
 }
