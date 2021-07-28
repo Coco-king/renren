@@ -1,6 +1,5 @@
 package ${package}.${moduleName}.entity;
 
-
 #if(${hasList})
 import java.util.List;
 #end
@@ -18,9 +17,9 @@ import org.springframework.data.annotation.Id;
  */
 @Data
 public class ${className}InnerEntity  {
-
 #foreach ($column in $columns)
-private #if($column.extra == "array")List<#end$column.attrType#if($column.extra == "array")>#end $column.attrname;
+
+    private #if($column.extra == "array")List<#end$column.attrType#if($column.extra == "array")>#end $column.attrname;
 #end
 
 }

@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * mongo适配器
  *
- * @author: gxz gongxuanzhang@foxmail.com
+ * @author gxz gongxuanzhang@foxmail.com
  **/
 public class MongoTableInfoAdaptor {
 

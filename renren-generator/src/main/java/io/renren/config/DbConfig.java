@@ -1,21 +1,21 @@
-/**
+/*
  * Copyright (c) 2018 人人开源 All rights reserved.
  * <p>
  * https://www.renren.io
  * <p>
  * 版权所有，侵权必究！
  */
-
 package io.renren.config;
 
 import io.renren.dao.*;
 import io.renren.utils.RRException;
-import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+
+import javax.annotation.Resource;
 
 /**
  * 数据库配置
@@ -24,14 +24,19 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 public class DbConfig {
+
     @Value("${renren.database: mysql}")
     private String database;
+
     @Resource
     private MySQLGeneratorDao mySQLGeneratorDao;
+
     @Resource
     private OracleGeneratorDao oracleGeneratorDao;
+
     @Resource
     private SQLServerGeneratorDao sqlServerGeneratorDao;
+
     @Resource
     private PostgreSQLGeneratorDao postgreSQLGeneratorDao;
 

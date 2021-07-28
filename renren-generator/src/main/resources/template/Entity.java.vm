@@ -25,16 +25,14 @@ import java.io.Serializable;
 @TableName("${tableName}")
 public class ${className}Entity implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 #foreach ($column in $columns)
 
-	/**
-	 * $column.comments
-	 */
+    /** $column.comments */
 	#if($column.columnName == $pk.columnName)
-@TableId
+    @TableId
 	#end
-private $column.attrType $column.attrname;
+    private $column.attrType $column.attrname;
 #end
 
 }

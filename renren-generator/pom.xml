@@ -24,6 +24,7 @@
 		<mssql.version>4.0</mssql.version>
 		<oracle.version>11.2.0.3</oracle.version>
 		<mongo.version>3.11.0</mongo.version>
+        <lombok.version>1.18.16</lombok.version>
 	</properties>
 
 	<dependencies>
@@ -121,6 +122,11 @@
 			<artifactId>mongo-java-driver</artifactId>
 			<version>${mongo.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
 	</dependencies>
 
     <dependencyManagement>

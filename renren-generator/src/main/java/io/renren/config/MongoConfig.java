@@ -5,9 +5,6 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
-import io.renren.factory.MongoDBCollectionFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
@@ -17,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author: gxz gongxuanzhang@foxmail.com
+ * @author gxz gongxuanzhang@foxmail.com
  **/
 @Component
 @ConfigurationProperties(prefix = "mongodb")
-
 public class MongoConfig {
+
     private String host;
     private int port;
     private String username;
@@ -30,7 +27,6 @@ public class MongoConfig {
     private String dataBase;
     private boolean auth;
     private String source;
-
 
     @Bean
     @Conditional(MongoCondition.class)
@@ -40,7 +36,7 @@ public class MongoConfig {
         adds.add(serverAddress);
         if (this.auth) {
             MongoCredential mongoCredential = MongoCredential.
-                    createScramSha1Credential(this.username, this.source, this.password.toCharArray());
+                createScramSha1Credential(this.username, this.source, this.password.toCharArray());
             MongoClientOptions mongoClientOptions = MongoClientOptions.builder().build();
             return new MongoClient(adds, mongoCredential, mongoClientOptions);
         }
@@ -52,7 +48,6 @@ public class MongoConfig {
     public MongoDatabase getDataBase() {
         return getMongoClient().getDatabase(dataBase);
     }
-
 
 
     public MongoConfig setHost(String host) {

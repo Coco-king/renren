@@ -6,24 +6,25 @@ import org.apache.commons.collections.CollectionUtils;
 import java.io.Serializable;
 import java.util.*;
 
-
 /**
  * 解析表之后得到的信息实体
  * 换句话说这个类就是一张mongo一张表的内容
  *
  * @author gxz 514190950@qq.com
  */
-
 public class MongoDefinition implements Serializable {
-    /***属性名**/
-    private String propertyName;
-    /***属性类型 对应mongodb api $type   如果没有类型 表示这是一个顶层实体  而不是内嵌属性**/
-    private Integer type;
-    /***此属性是否是数组**/
-    private boolean array = false;
-    /***如果此属性是对象  那么他仍然有此类型的子类**/
-    private List<MongoDefinition> child;
 
+    /** 属性名 */
+    private String propertyName;
+
+    /** 属性类型 对应mongodb api $type   如果没有类型 表示这是一个顶层实体  而不是内嵌属性 */
+    private Integer type;
+
+    /** 此属性是否是数组 */
+    private boolean array = false;
+
+    /** 如果此属性是对象  那么他仍然有此类型的子类 */
+    private List<MongoDefinition> child;
 
     public List<MongoGeneratorEntity> getChildrenInfo(String tableName) {
         List<MongoGeneratorEntity> result = new ArrayList<>();
@@ -54,11 +55,9 @@ public class MongoDefinition implements Serializable {
         return type == null || Objects.equals(type, objectType) || CollectionUtils.isNotEmpty(child);
     }
 
-
     public boolean primaryBean() {
         return type == null;
     }
-
 
     public MongoDefinition setType(Integer type) {
         this.type = type;

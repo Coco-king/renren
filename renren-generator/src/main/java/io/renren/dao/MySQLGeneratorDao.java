@@ -2,7 +2,6 @@ package io.renren.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-
 /**
  * MySQL代码生成器
  *
@@ -11,6 +10,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface MySQLGeneratorDao extends GeneratorDao {
-	
 
 }

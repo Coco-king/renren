@@ -1,6 +1,5 @@
 server:
   port: 80
-
 # mysql
 spring:
   datasource:
@@ -25,15 +24,11 @@ spring:
   #    url: jdbc:postgresql://192.168.10.10:5432/renren_fast
   #    username: postgres
   #    password: 123456
-
-
-
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
   resources:
     static-locations: classpath:/static/,classpath:/views/
-
 #mongodb:
 #  host: localhost
 #  port: 27017
@@ -42,17 +37,12 @@ spring:
 #  password: renren
 #  source: 123456
 #  database: test
-
 mybatis-plus:
   mapperLocations: classpath:mapper/**/*.xml
-
-
 pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
-
-
 #指定数据库，可选值有【mysql、oracle、sqlserver、postgresql、mongodb】
 renren:
   database: mysql

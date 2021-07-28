@@ -1,6 +1,5 @@
 package io.renren.config;
 
-
 import io.renren.entity.mongo.MongoDefinition;
 
 import java.util.Map;
@@ -12,8 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class MongoManager {
 
-    /***mongo扫描很消耗性能 尤其是子类的封装  使用缓存**/
-    private static Map<String, MongoDefinition> mongoCache = new ConcurrentHashMap<>();
+    /** mongo扫描很消耗性能 尤其是子类的封装  使用缓存 */
+    private static final Map<String, MongoDefinition> mongoCache = new ConcurrentHashMap<>();
 
     public static Map<String, MongoDefinition> getCache() {
         return mongoCache;

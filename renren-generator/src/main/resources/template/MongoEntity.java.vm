@@ -1,6 +1,5 @@
 package ${package}.${moduleName}.entity;
 
-
 #if(${hasBigDecimal})
 import java.math.BigDecimal;
 #end
@@ -27,9 +26,9 @@ public class ${className}Entity implements Serializable {
 #foreach ($column in $columns)
 
 	#if($column.columnName == "id")
-@Id
+    @Id
 	#end
-private #if($column.extra == "array")List<#end$column.attrType#if($column.extra == "array")>#end $column.attrname;
+    private #if($column.extra == "array")List<#end$column.attrType#if($column.extra == "array")>#end $column.attrname;
 #end
 
 }

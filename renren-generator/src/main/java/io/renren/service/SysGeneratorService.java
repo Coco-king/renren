@@ -1,11 +1,10 @@
-/**
+/*
  * Copyright (c) 2018 人人开源 All rights reserved.
  * <p>
  * https://www.renren.io
  * <p>
  * 版权所有，侵权必究！
  */
-
 package io.renren.service;
 
 import com.github.pagehelper.Page;
@@ -18,9 +17,9 @@ import io.renren.utils.GenUtils;
 import io.renren.utils.PageUtils;
 import io.renren.utils.Query;
 import org.apache.commons.io.IOUtils;
-import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Map;
@@ -33,9 +32,9 @@ import java.util.zip.ZipOutputStream;
  */
 @Service
 public class SysGeneratorService {
+
     @Resource
     private GeneratorDao generatorDao;
-
 
     public PageUtils queryList(Query query) {
         Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
@@ -55,10 +54,10 @@ public class SysGeneratorService {
         return generatorDao.queryColumns(tableName);
     }
 
-
     public byte[] generatorCode(String[] tableNames) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ZipOutputStream zip = new ZipOutputStream(outputStream);
+
         for (String tableName : tableNames) {
             //查询表信息
             Map<String, String> table = queryTable(tableName);
@@ -67,10 +66,10 @@ public class SysGeneratorService {
             //生成代码
             GenUtils.generatorCode(table, columns, zip);
         }
+
         if (MongoManager.isMongo()) {
             GenUtils.generatorMongoCode(tableNames, zip);
         }
-
 
         IOUtils.closeQuietly(zip);
         return outputStream.toByteArray();

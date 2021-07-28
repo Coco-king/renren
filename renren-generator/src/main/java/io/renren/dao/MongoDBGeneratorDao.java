@@ -6,16 +6,17 @@ import io.renren.config.MongoManager;
 import io.renren.entity.mongo.MongoDefinition;
 import io.renren.factory.MongoDBCollectionFactory;
 import io.renren.utils.MongoScanner;
-import javax.annotation.Resource;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
- * @author: gxz gongxuanzhang@foxmail.com
+ * @author gxz gongxuanzhang@foxmail.com
  **/
 @Repository
 @Conditional(MongoCondition.class)
@@ -27,7 +28,10 @@ public class MongoDBGeneratorDao implements GeneratorDao {
     @Override
     public List<Map<String, Object>> queryList(Map<String, Object> map) {
         List<String> collectionNames = MongoDBCollectionFactory.getCollectionNames(map);
-        return (List) MongoTableInfoAdaptor.tableInfo(collectionNames);
+
+        return MongoTableInfoAdaptor.tableInfo(collectionNames).stream()
+            .map(m -> (Map<String, Object>) new HashMap<String, Object>(m))
+            .collect(Collectors.toList());
     }
 
     @Override

@@ -30,10 +30,11 @@ import java.util.zip.ZipOutputStream;
  * @date 2016年12月19日 下午11:40:24
  */
 public class GenUtils {
+
     private static String currentTableName;
 
     public static List<String> getTemplates() {
-        List<String> templates = new ArrayList<String>();
+        List<String> templates = new ArrayList<>();
         templates.add("template/Entity.java.vm");
         templates.add("template/Dao.xml.vm");
 
@@ -57,7 +58,7 @@ public class GenUtils {
     }
 
     public static List<String> getMongoChildTemplates() {
-        List<String> templates = new ArrayList<String>();
+        List<String> templates = new ArrayList<>();
         templates.add("template/MongoChildrenEntity.java.vm");
         return templates;
     }
@@ -65,8 +66,11 @@ public class GenUtils {
     /**
      * 生成代码
      */
-    public static void generatorCode(Map<String, String> table,
-                                     List<Map<String, String>> columns, ZipOutputStream zip) {
+    public static void generatorCode(
+        Map<String, String> table,
+        List<Map<String, String>> columns,
+        ZipOutputStream zip
+    ) {
         //配置信息
         Configuration config = getConfig();
         boolean hasBigDecimal = false;
@@ -163,7 +167,13 @@ public class GenUtils {
 
             try {
                 //添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), config.getString("package"), config.getString("moduleName"))));
+                zip.putNextEntry(
+                    new ZipEntry(
+                        Objects.requireNonNull(
+                            getFileName(template, tableEntity.getClassName(), config.getString("package"), config.getString("moduleName"))
+                        )
+                    )
+                );
                 IOUtils.write(sw.toString(), zip, "UTF-8");
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();
@@ -259,7 +269,13 @@ public class GenUtils {
             tpl.merge(context, sw);
             try {
                 //添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), config.getString("package"), config.getString("moduleName"))));
+                zip.putNextEntry(
+                    new ZipEntry(
+                        Objects.requireNonNull(
+                            getFileName(template, tableEntity.getClassName(), config.getString("package"), config.getString("moduleName"))
+                        )
+                    )
+                );
                 IOUtils.write(sw.toString(), zip, "UTF-8");
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();
@@ -343,12 +359,12 @@ public class GenUtils {
 
         if (template.contains("index.vue.vm")) {
             return "main" + File.separator + "resources" + File.separator + "src" + File.separator + "views" + File.separator + "modules" +
-                    File.separator + moduleName + File.separator + className.toLowerCase() + ".vue";
+                File.separator + moduleName + File.separator + className.toLowerCase() + ".vue";
         }
 
         if (template.contains("add-or-update.vue.vm")) {
             return "main" + File.separator + "resources" + File.separator + "src" + File.separator + "views" + File.separator + "modules" +
-                    File.separator + moduleName + File.separator + className.toLowerCase() + "-add-or-update.vue";
+                File.separator + moduleName + File.separator + className.toLowerCase() + "-add-or-update.vue";
         }
 
         return null;

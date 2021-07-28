@@ -25,7 +25,7 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${clas
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<${className}Entity> page = this.page(
                 new Query<${className}Entity>().getPage(params),
-                new QueryWrapper<${className}Entity>()
+                new QueryWrapper<>()
         );
 
         return new PageUtils(page);

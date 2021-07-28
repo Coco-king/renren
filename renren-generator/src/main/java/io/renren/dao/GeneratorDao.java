@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2018 人人开源 http://www.renren.io
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 package io.renren.dao;
 
 import java.util.List;
@@ -26,6 +25,7 @@ import java.util.Map;
  * @since 2018-07-24
  */
 public interface GeneratorDao {
+    
     List<Map<String, Object>> queryList(Map<String, Object> map);
 
     Map<String, String> queryTable(String tableName);
