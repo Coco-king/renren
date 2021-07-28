@@ -40,7 +40,7 @@ public interface ScheduleJobService extends IService<ScheduleJobEntity> {
     /**
      * 批量更新定时任务状态
      */
-    int updateBatch(Long[] jobIds, int status);
+    boolean updateBatch(Long[] jobIds, int status);
 
     /**
      * 立即执行

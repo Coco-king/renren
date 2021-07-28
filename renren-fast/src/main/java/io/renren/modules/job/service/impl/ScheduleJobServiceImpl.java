@@ -25,7 +25,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service("scheduleJobService")
 public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobDao, ScheduleJobEntity> implements ScheduleJobService {
@@ -92,11 +96,22 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobDao, Schedule
     }
 
     @Override
-    public int updateBatch(Long[] jobIds, int status) {
-        Map<String, Object> map = new HashMap<>(2);
-        map.put("list", jobIds);
-        map.put("status", status);
-        return baseMapper.updateBatch(map);
+    public boolean updateBatch(Long[] jobIds, int status) {
+        List<ScheduleJobEntity> scheduleJobs = Arrays.stream(jobIds).map(jobId -> {
+            //暂停(PAUSE)/恢复(NORMAL)任务
+            if (Constant.ScheduleStatus.PAUSE.getValue() == status) {
+                ScheduleUtils.pauseJob(scheduler, jobId);
+            } else if (Constant.ScheduleStatus.NORMAL.getValue() == status) {
+                ScheduleUtils.resumeJob(scheduler, jobId);
+            }
+
+            ScheduleJobEntity jobEntity = new ScheduleJobEntity();
+            jobEntity.setJobId(jobId);
+            jobEntity.setStatus(status);
+            return jobEntity;
+        }).collect(Collectors.toList());
+
+        return this.updateBatchById(scheduleJobs);
     }
 
     @Override
@@ -110,20 +125,12 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobDao, Schedule
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void pause(Long[] jobIds) {
-        for (Long jobId : jobIds) {
-            ScheduleUtils.pauseJob(scheduler, jobId);
-        }
-
         updateBatch(jobIds, Constant.ScheduleStatus.PAUSE.getValue());
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void resume(Long[] jobIds) {
-        for (Long jobId : jobIds) {
-            ScheduleUtils.resumeJob(scheduler, jobId);
-        }
-
         updateBatch(jobIds, Constant.ScheduleStatus.NORMAL.getValue());
     }
 
