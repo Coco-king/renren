@@ -59,7 +59,7 @@ public class SysMenuController extends AbstractController {
         List<SysMenuEntity> menuList = sysMenuService.list();
 
         Map<Long, SysMenuEntity> menuMap = menuList.stream().collect(
-                Collectors.toMap(SysMenuEntity::getMenuId, v -> v)
+            Collectors.toMap(SysMenuEntity::getMenuId, v -> v)
         );
 
         return menuList.stream().peek(menu -> {
@@ -180,7 +180,7 @@ public class SysMenuController extends AbstractController {
 
         //目录、菜单
         if (menu.getType() == Constant.MenuType.CATALOG.getValue() ||
-                menu.getType() == Constant.MenuType.MENU.getValue()) {
+            menu.getType() == Constant.MenuType.MENU.getValue()) {
             if (parentType != Constant.MenuType.CATALOG.getValue()) {
                 throw new RRException("上级菜单只能为目录类型");
             }
@@ -192,7 +192,6 @@ public class SysMenuController extends AbstractController {
             if (parentType != Constant.MenuType.MENU.getValue()) {
                 throw new RRException("上级菜单只能为菜单类型");
             }
-            return;
         }
     }
 }

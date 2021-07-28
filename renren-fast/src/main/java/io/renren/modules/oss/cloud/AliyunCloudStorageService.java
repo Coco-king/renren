@@ -19,18 +19,22 @@ import java.io.InputStream;
  * @author Mark sunlightcs@gmail.com
  */
 public class AliyunCloudStorageService extends CloudStorageService {
+
     private OSSClient client;
 
-    public AliyunCloudStorageService(CloudStorageConfig config){
+    public AliyunCloudStorageService(CloudStorageConfig config) {
         this.config = config;
 
         //初始化
         init();
     }
 
-    private void init(){
-        client = new OSSClient(config.getAliyunEndPoint(), config.getAliyunAccessKeyId(),
-                config.getAliyunAccessKeySecret());
+    private void init() {
+        client = new OSSClient(
+            config.getAliyunEndPoint(),
+            config.getAliyunAccessKeyId(),
+            config.getAliyunAccessKeySecret()
+        );
     }
 
     @Override
@@ -42,7 +46,7 @@ public class AliyunCloudStorageService extends CloudStorageService {
     public String upload(InputStream inputStream, String path) {
         try {
             client.putObject(config.getAliyunBucketName(), path, inputStream);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new RRException("上传文件失败，请检查配置信息", e);
         }
 

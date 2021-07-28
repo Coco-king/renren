@@ -23,8 +23,10 @@ import java.util.List;
 
 @Service("sysMenuService")
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> implements SysMenuService {
+
     @Resource
     private SysUserService sysUserService;
+
     @Resource
     private SysRoleMenuService sysRoleMenuService;
 

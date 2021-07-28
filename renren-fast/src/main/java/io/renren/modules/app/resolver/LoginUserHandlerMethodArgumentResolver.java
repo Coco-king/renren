@@ -11,7 +11,7 @@ import io.renren.modules.app.annotation.LoginUser;
 import io.renren.modules.app.entity.UserEntity;
 import io.renren.modules.app.interceptor.AuthorizationInterceptor;
 import io.renren.modules.app.service.UserService;
-import javax.annotation.Resource;
+import lombok.NonNull;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -20,6 +20,8 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import javax.annotation.Resource;
+
 /**
  * 有@LoginUser注解的方法参数，注入当前登录用户
  *
@@ -27,6 +29,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  */
 @Component
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
+
     @Resource
     private UserService userService;
 
@@ -36,17 +39,19 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
     }
 
     @Override
-    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container,
-                                  NativeWebRequest request, WebDataBinderFactory factory) throws Exception {
+    public Object resolveArgument(
+        @NonNull MethodParameter parameter,
+        ModelAndViewContainer container,
+        NativeWebRequest request,
+        WebDataBinderFactory factory
+    ) throws Exception {
         //获取用户ID
         Object object = request.getAttribute(AuthorizationInterceptor.USER_KEY, RequestAttributes.SCOPE_REQUEST);
-        if(object == null){
+        if (object == null) {
             return null;
         }
 
         //获取用户信息
-        UserEntity user = userService.getById((Long)object);
-
-        return user;
+        return userService.getById((Long) object);
     }
 }

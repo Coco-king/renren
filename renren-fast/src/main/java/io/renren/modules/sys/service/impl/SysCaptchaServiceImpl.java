@@ -7,7 +7,6 @@
  */
 package io.renren.modules.sys.service.impl;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.code.kaptcha.Producer;
@@ -17,9 +16,9 @@ import io.renren.modules.sys.dao.SysCaptchaDao;
 import io.renren.modules.sys.entity.SysCaptchaEntity;
 import io.renren.modules.sys.service.SysCaptchaService;
 import org.apache.commons.lang.StringUtils;
-import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.awt.image.BufferedImage;
 import java.util.Date;
 
@@ -30,12 +29,13 @@ import java.util.Date;
  */
 @Service("sysCaptchaService")
 public class SysCaptchaServiceImpl extends ServiceImpl<SysCaptchaDao, SysCaptchaEntity> implements SysCaptchaService {
+
     @Resource
     private Producer producer;
 
     @Override
     public BufferedImage getCaptcha(String uuid) {
-        if(StringUtils.isBlank(uuid)){
+        if (StringUtils.isBlank(uuid)) {
             throw new RRException("uuid不能为空");
         }
         //生成文字验证码
@@ -54,17 +54,13 @@ public class SysCaptchaServiceImpl extends ServiceImpl<SysCaptchaDao, SysCaptcha
     @Override
     public boolean validate(String uuid, String code) {
         SysCaptchaEntity captchaEntity = this.getOne(new QueryWrapper<SysCaptchaEntity>().eq("uuid", uuid));
-        if(captchaEntity == null){
+        if (captchaEntity == null) {
             return false;
         }
 
         //删除验证码
         this.removeById(uuid);
 
-        if(captchaEntity.getCode().equalsIgnoreCase(code) && captchaEntity.getExpireTime().getTime() >= System.currentTimeMillis()){
-            return true;
-        }
-
-        return false;
+        return captchaEntity.getCode().equalsIgnoreCase(code) && captchaEntity.getExpireTime().getTime() >= System.currentTimeMillis();
     }
 }

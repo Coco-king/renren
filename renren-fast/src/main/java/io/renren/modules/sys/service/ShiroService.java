@@ -18,6 +18,7 @@ import java.util.Set;
  * @author Mark sunlightcs@gmail.com
  */
 public interface ShiroService {
+
     /**
      * 获取用户权限列表
      */
@@ -27,7 +28,8 @@ public interface ShiroService {
 
     /**
      * 根据用户ID，查询用户
-     * @param userId
+     *
+     * @param userId 用户ID
      */
     SysUserEntity queryUser(Long userId);
 }

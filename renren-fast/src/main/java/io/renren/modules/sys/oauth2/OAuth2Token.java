@@ -16,9 +16,10 @@ import org.apache.shiro.authc.AuthenticationToken;
  * @author Mark sunlightcs@gmail.com
  */
 public class OAuth2Token implements AuthenticationToken {
-    private String token;
 
-    public OAuth2Token(String token){
+    private final String token;
+
+    public OAuth2Token(String token) {
         this.token = token;
     }
 

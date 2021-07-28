@@ -3,5 +3,4 @@
 
 <mapper namespace="io.renren.modules.oss.dao.SysOssDao">
 
-
 </mapper>

@@ -12,12 +12,12 @@ import io.renren.common.utils.R;
 import io.renren.modules.job.entity.ScheduleJobLogEntity;
 import io.renren.modules.job.service.ScheduleJobLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -28,27 +28,27 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sys/scheduleLog")
 public class ScheduleJobLogController {
-	@Resource
-	private ScheduleJobLogService scheduleJobLogService;
+    @Resource
+    private ScheduleJobLogService scheduleJobLogService;
 
-	/**
-	 * 定时任务日志列表
-	 */
-	@RequestMapping("/list")
-	@RequiresPermissions("sys:schedule:log")
-	public R list(@RequestParam Map<String, Object> params){
-		PageUtils page = scheduleJobLogService.queryPage(params);
+    /**
+     * 定时任务日志列表
+     */
+    @RequestMapping("/list")
+    @RequiresPermissions("sys:schedule:log")
+    public R list(@RequestParam Map<String, Object> params) {
+        PageUtils page = scheduleJobLogService.queryPage(params);
 
-		return R.ok().push("page", page);
-	}
+        return R.ok().push("page", page);
+    }
 
-	/**
-	 * 定时任务日志信息
-	 */
-	@RequestMapping("/info/{logId}")
-	public R info(@PathVariable("logId") Long logId){
-		ScheduleJobLogEntity log = scheduleJobLogService.getById(logId);
+    /**
+     * 定时任务日志信息
+     */
+    @RequestMapping("/info/{logId}")
+    public R info(@PathVariable("logId") Long logId) {
+        ScheduleJobLogEntity log = scheduleJobLogService.getById(logId);
 
-		return R.ok().push("log", log);
-	}
+        return R.ok().push("log", log);
+    }
 }

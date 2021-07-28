@@ -10,9 +10,10 @@ package io.renren;
 import io.renren.service.DynamicDataSourceTestService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import javax.annotation.Resource;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.annotation.Resource;
 
 /**
  * 多数据源测试
@@ -22,11 +23,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DynamicDataSourceTest {
+
     @Resource
     private DynamicDataSourceTestService dynamicDataSourceTestService;
 
     @Test
-    public void test(){
+    public void test() {
         Long id = 1L;
 
         dynamicDataSourceTestService.updateUser(id);

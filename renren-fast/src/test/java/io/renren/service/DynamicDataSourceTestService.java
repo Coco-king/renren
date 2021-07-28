@@ -10,9 +10,10 @@ package io.renren.service;
 import io.renren.datasource.annotation.DataSource;
 import io.renren.modules.sys.dao.SysUserDao;
 import io.renren.modules.sys.entity.SysUserEntity;
-import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 /**
  * 测试多数据源
@@ -22,11 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 //@DataSource("slave1")
 public class DynamicDataSourceTestService {
+
     @Resource
     private SysUserDao sysUserDao;
 
     @Transactional
-    public void updateUser(Long id){
+    public void updateUser(Long id) {
         SysUserEntity user = new SysUserEntity();
         user.setUserId(id);
         user.setMobile("13500000000");
@@ -35,7 +37,7 @@ public class DynamicDataSourceTestService {
 
     @Transactional
     @DataSource("slave1")
-    public void updateUserBySlave1(Long id){
+    public void updateUserBySlave1(Long id) {
         SysUserEntity user = new SysUserEntity();
         user.setUserId(id);
         user.setMobile("13500000001");
@@ -44,13 +46,13 @@ public class DynamicDataSourceTestService {
 
     @DataSource("slave2")
     @Transactional
-    public void updateUserBySlave2(Long id){
+    public void updateUserBySlave2(Long id) {
         SysUserEntity user = new SysUserEntity();
         user.setUserId(id);
         user.setMobile("13500000002");
         sysUserDao.updateById(user);
 
-        //测试事物
-        int i = 1/0;
+        //测试事务
+        int i = 1 / 0;
     }
 }
