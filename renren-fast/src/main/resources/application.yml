@@ -1,14 +1,14 @@
 # Tomcat
 server:
+  port: 9999
+  servlet:
+    context-path: /renren-fast
   tomcat:
     uri-encoding: UTF-8
     connection-timeout: 5000ms
     threads:
       min-spare: 30
       max: 1000
-  port: 8080
-  servlet:
-    context-path: /renren-fast
 spring:
   application:
     name: renren-fast
