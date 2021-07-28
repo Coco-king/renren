@@ -7,13 +7,14 @@
  */
 package io.renren.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 跨域挪动到网关 TODO 该包（类）以及所有下面的包（类）
+ * TODO 真实项目建议把跨域挪动到网关
  */
-//@Configuration
+@Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
     @Override
