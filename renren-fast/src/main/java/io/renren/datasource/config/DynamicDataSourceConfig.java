@@ -1,22 +1,21 @@
-/**
+/*
  * Copyright (c) 2018 人人开源 All rights reserved.
  *
  * https://www.renren.io
  *
  * 版权所有，侵权必究！
  */
-
 package io.renren.datasource.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import io.renren.datasource.properties.DataSourceProperties;
 import io.renren.datasource.properties.DynamicDataSourceProperties;
-import javax.annotation.Resource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +27,7 @@ import java.util.Map;
 @Configuration
 @EnableConfigurationProperties(DynamicDataSourceProperties.class)
 public class DynamicDataSourceConfig {
+
     @Resource
     private DynamicDataSourceProperties properties;
 
@@ -49,7 +49,7 @@ public class DynamicDataSourceConfig {
         return dynamicDataSource;
     }
 
-    private Map<Object, Object> getDynamicDataSource(){
+    private Map<Object, Object> getDynamicDataSource() {
         Map<String, DataSourceProperties> dataSourcePropertiesMap = properties.getDatasource();
         Map<Object, Object> targetDataSources = new HashMap<>(dataSourcePropertiesMap.size());
         dataSourcePropertiesMap.forEach((k, v) -> {

@@ -7,9 +7,9 @@
  */
 package io.renren.config;
 
-import org.apache.shiro.mgt.SecurityManager;
 import io.renren.modules.sys.oauth2.OAuth2Filter;
 import io.renren.modules.sys.oauth2.OAuth2Realm;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
