@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 角色与菜单对应关系
@@ -35,13 +36,14 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuDao, SysRoleM
         }
 
         //保存角色与菜单关系
-        for (Long menuId : menuIdList) {
+        List<SysRoleMenuEntity> roleMenuList = menuIdList.stream().map(menuId -> {
             SysRoleMenuEntity sysRoleMenuEntity = new SysRoleMenuEntity();
             sysRoleMenuEntity.setMenuId(menuId);
             sysRoleMenuEntity.setRoleId(roleId);
+            return sysRoleMenuEntity;
+        }).collect(Collectors.toList());
 
-            this.save(sysRoleMenuEntity);
-        }
+        this.saveBatch(roleMenuList);
     }
 
     @Override

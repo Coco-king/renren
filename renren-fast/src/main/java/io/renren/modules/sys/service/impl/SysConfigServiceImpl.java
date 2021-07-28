@@ -28,6 +28,7 @@ import java.util.Map;
 
 @Service("sysConfigService")
 public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEntity> implements SysConfigService {
+
     @Resource
     private SysConfigRedis sysConfigRedis;
 
