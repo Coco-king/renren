@@ -10,9 +10,9 @@ package io.renren.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import io.renren.config.MongoManager;
-import io.renren.dao.GeneratorDao;
-import io.renren.dao.MongoDBGeneratorDao;
 import io.renren.factory.MongoDBCollectionFactory;
+import io.renren.mapper.GeneratorMapper;
+import io.renren.mapper.MongoDBGeneratorMapper;
 import io.renren.utils.GenUtils;
 import io.renren.utils.PageUtils;
 import io.renren.utils.Query;
@@ -34,24 +34,24 @@ import java.util.zip.ZipOutputStream;
 public class SysGeneratorService {
 
     @Autowired
-    private GeneratorDao generatorDao;
+    private GeneratorMapper generatorMapper;
 
     public PageUtils queryList(Query query) {
         Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
-        List<Map<String, Object>> list = generatorDao.queryList(query);
+        List<Map<String, Object>> list = generatorMapper.queryList(query);
         int total = (int) page.getTotal();
-        if (generatorDao instanceof MongoDBGeneratorDao) {
+        if (generatorMapper instanceof MongoDBGeneratorMapper) {
             total = MongoDBCollectionFactory.getCollectionTotal(query);
         }
         return new PageUtils(list, total, query.getLimit(), query.getPage());
     }
 
     public Map<String, String> queryTable(String tableName) {
-        return generatorDao.queryTable(tableName);
+        return generatorMapper.queryTable(tableName);
     }
 
     public List<Map<String, String>> queryColumns(String tableName) {
-        return generatorDao.queryColumns(tableName);
+        return generatorMapper.queryColumns(tableName);
     }
 
     public byte[] generatorCode(String[] tableNames) {

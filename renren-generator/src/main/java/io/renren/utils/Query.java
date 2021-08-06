@@ -1,5 +1,8 @@
 package io.renren.utils;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -10,6 +13,8 @@ import java.util.Map;
  * @email sunlightcs@gmail.com
  * @date 2017-03-14 23:15
  */
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class Query extends LinkedHashMap<String, Object> {
 
     private static final long serialVersionUID = 1L;
@@ -29,21 +34,5 @@ public class Query extends LinkedHashMap<String, Object> {
         this.put("offset", (page - 1) * limit);
         this.put("page", page);
         this.put("limit", limit);
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
     }
 }
