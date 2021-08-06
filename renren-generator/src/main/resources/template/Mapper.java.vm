@@ -11,6 +11,6 @@ import ${package}.${moduleName}.entity.${className}Entity;
  * @since ${datetime}
  */
 @Mapper
-public interface ${className}Mapper extends BaseMapper<${className}> {
+public interface ${className}Mapper extends BaseMapper<${className}Entity> {
 
 }
