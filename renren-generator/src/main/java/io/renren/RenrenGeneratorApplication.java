@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
+@MapperScan("io.renren.mapper")
 @SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
-@MapperScan("io.renren.dao")
 public class RenrenGeneratorApplication {
     public static void main(String[] args) {
         SpringApplication.run(RenrenGeneratorApplication.class, args);
