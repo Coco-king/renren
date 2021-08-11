@@ -7,7 +7,7 @@
  */
 package io.renren.config;
 
-import io.renren.mapper.*;
+import io.renren.dao.*;
 import io.renren.utils.RRException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,23 +29,23 @@ public class DbConfig {
     private String database;
 
     @Resource
-    private MySQLGeneratorMapper mySQLGeneratorDao;
+    private MySQLGeneratorDao mySQLGeneratorDao;
 
     @Resource
-    private OracleGeneratorMapper oracleGeneratorDao;
+    private OracleGeneratorDao oracleGeneratorDao;
 
     @Resource
-    private SQLServerGeneratorMapper sqlServerGeneratorDao;
+    private SQLServerGeneratorDao sqlServerGeneratorDao;
 
     @Resource
-    private PostgreSQLGeneratorMapper postgreSQLGeneratorDao;
+    private PostgreSQLGeneratorDao postgreSQLGeneratorDao;
 
     private static boolean mongo = false;
 
     @Bean
     @Primary
     @Conditional(MongoNullCondition.class)
-    public GeneratorMapper getGeneratorDao() {
+    public GeneratorDao getGeneratorDao() {
         if ("mysql".equalsIgnoreCase(database)) {
             return mySQLGeneratorDao;
         } else if ("oracle".equalsIgnoreCase(database)) {
@@ -62,7 +62,7 @@ public class DbConfig {
     @Bean
     @Primary
     @Conditional(MongoCondition.class)
-    public GeneratorMapper getMongoDBDao(MongoDBGeneratorMapper mongoDBGeneratorDao) {
+    public GeneratorDao getMongoDBDao(MongoDBGeneratorDao mongoDBGeneratorDao) {
         mongo = true;
         return mongoDBGeneratorDao;
     }

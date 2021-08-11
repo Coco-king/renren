@@ -54,20 +54,20 @@ public class ColumnEntity {
         this.comments = comments;
     }
 
-    public String getAttrName() {
-        return attrName;
-    }
-
-    public void setAttrName(String attrName) {
-        this.attrName = attrName;
-    }
-
     public String getAttrname() {
         return attrname;
     }
 
     public void setAttrname(String attrname) {
         this.attrname = attrname;
+    }
+
+    public String getAttrName() {
+        return attrName;
+    }
+
+    public void setAttrName(String attrName) {
+        this.attrName = attrName;
     }
 
     public String getAttrType() {

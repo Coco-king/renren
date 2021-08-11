@@ -55,6 +55,7 @@ public class MongoScanner {
         MongoManager.putInfo(collection.getNamespace().getCollectionName(), mongoDefinition);
         // 解析完成之后释放链接资源
         this.collection = null;
+
     }
 
     public MongoDefinition getProduct() {

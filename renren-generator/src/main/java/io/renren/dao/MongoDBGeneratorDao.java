@@ -1,4 +1,4 @@
-package io.renren.mapper;
+package io.renren.dao;
 
 import io.renren.adaptor.MongoTableInfoAdaptor;
 import io.renren.config.MongoCondition;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  **/
 @Repository
 @Conditional(MongoCondition.class)
-public class MongoDBGeneratorMapper implements GeneratorMapper {
+public class MongoDBGeneratorDao implements GeneratorDao {
 
     @Resource
     private MongoDBCollectionFactory mongoDBCollectionFactory;

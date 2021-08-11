@@ -1,8 +1,5 @@
 package io.renren.utils;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 /**
  * 自定义异常
  *
@@ -10,8 +7,6 @@ import lombok.EqualsAndHashCode;
  * @email sunlightcs@gmail.com
  * @date 2016年10月27日 下午10:11:27
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class RRException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
@@ -40,4 +35,21 @@ public class RRException extends RuntimeException {
         this.msg = msg;
         this.code = code;
     }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
 }
