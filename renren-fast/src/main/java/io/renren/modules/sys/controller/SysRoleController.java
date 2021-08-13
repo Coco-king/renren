@@ -60,13 +60,13 @@ public class SysRoleController extends AbstractController {
     @GetMapping("/select")
     @RequiresPermissions("sys:role:select")
     public R select() {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>(1);
 
         //如果不是超级管理员，则只查询自己所拥有的角色列表
         if (getUserId() != Constant.SUPER_ADMIN) {
             map.put("create_user_id", getUserId());
         }
-        List<SysRoleEntity> list = (List<SysRoleEntity>) sysRoleService.listByMap(map);
+        List<SysRoleEntity> list = sysRoleService.listByMap(map);
 
         return R.ok().push("list", list);
     }
