@@ -7,6 +7,8 @@
  */
 package io.renren.modules.job.config;
 
+import io.renren.common.utils.Constant;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -21,6 +23,10 @@ import java.util.Properties;
  */
 @Configuration
 public class ScheduleConfig {
+
+    /** 数据库驱动类型 */
+    @Value("${spring.datasource.druid.driver-class-name}")
+    private String dbDriverType;
 
     @Bean
     public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
@@ -47,7 +53,9 @@ public class ScheduleConfig {
         prop.put("org.quartz.jobStore.selectWithLockSQL", "SELECT * FROM {0}LOCKS UPDLOCK WHERE LOCK_NAME = ?");
 
         //PostgreSQL数据库，需要打开此注释
-        //prop.put("org.quartz.jobStore.driverDelegateClass", "org.quartz.impl.jdbcjobstore.PostgreSQLDelegate");
+        if (Constant.POSTGRE_SQL.equalsIgnoreCase(dbDriverType)) {
+            prop.put("org.quartz.jobStore.driverDelegateClass", "org.quartz.impl.jdbcjobstore.PostgreSQLDelegate");
+        }
 
         factory.setQuartzProperties(prop);
 

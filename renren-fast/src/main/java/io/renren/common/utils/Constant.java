@@ -32,6 +32,9 @@ public class Constant {
     /** 升序 */
     public static final String ASC = "asc";
 
+    /** PostgreSql驱动类 */
+    public static final String POSTGRE_SQL = "org.postgresql.Driver";
+
     /**
      * 菜单类型
      *
