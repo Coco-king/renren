@@ -13,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * TODO 真实项目建议把跨域挪动到网关
+ *
+ * @author Mark sunlightcs@gmail.com
  */
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {

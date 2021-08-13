@@ -24,7 +24,7 @@ import java.io.InputStream;
  *
  * @author Mark sunlightcs@gmail.com
  */
-public class QCloudCloudStorageService extends CloudStorageService {
+public class QCloudCloudStorageService extends AbstractCloudStorageService {
 
     private COSClient client;
 

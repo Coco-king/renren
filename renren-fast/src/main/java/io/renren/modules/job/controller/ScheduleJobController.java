@@ -27,6 +27,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sys/schedule")
 public class ScheduleJobController {
+    
     @Resource
     private ScheduleJobService scheduleJobService;
 

@@ -21,6 +21,7 @@ import java.sql.SQLException;
 public class DynamicDataSourceFactory {
 
     public static DruidDataSource buildDruidDataSource(DataSourceProperties properties) {
+
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setDriverClassName(properties.getDriverClassName());
         druidDataSource.setUrl(properties.getUrl());

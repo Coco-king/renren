@@ -26,6 +26,9 @@ import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Map;
 
+/**
+ * @author Mark sunlightcs@gmail.com
+ */
 @Service("sysConfigService")
 public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEntity> implements SysConfigService {
 

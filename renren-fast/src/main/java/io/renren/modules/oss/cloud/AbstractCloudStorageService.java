@@ -19,7 +19,7 @@ import java.util.UUID;
  *
  * @author Mark sunlightcs@gmail.com
  */
-public abstract class CloudStorageService {
+public abstract class AbstractCloudStorageService {
 
     /** 云存储配置信息 */
     protected CloudStorageConfig config;

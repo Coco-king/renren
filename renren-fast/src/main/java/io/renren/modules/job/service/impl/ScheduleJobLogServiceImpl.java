@@ -20,6 +20,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @author Mark sunlightcs@gmail.com
+ */
 @Service("scheduleJobLogService")
 public class ScheduleJobLogServiceImpl extends ServiceImpl<ScheduleJobLogDao, ScheduleJobLogEntity> implements ScheduleJobLogService {
 
@@ -29,7 +32,8 @@ public class ScheduleJobLogServiceImpl extends ServiceImpl<ScheduleJobLogDao, Sc
 
         IPage<ScheduleJobLogEntity> page = this.page(
             new Query<ScheduleJobLogEntity>().getPage(params),
-            new QueryWrapper<ScheduleJobLogEntity>().like(StringUtils.isNotBlank(jobId), "job_id", jobId)
+            new QueryWrapper<ScheduleJobLogEntity>()
+                .like(StringUtils.isNotBlank(jobId), "job_id", jobId)
         );
 
         return new PageUtils(page);

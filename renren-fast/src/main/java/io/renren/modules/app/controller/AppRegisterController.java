@@ -37,7 +37,7 @@ public class AppRegisterController {
     private UserService userService;
 
     @ApiOperation("注册")
-    @PostMapping("register")
+    @PostMapping("/register")
     public R register(@RequestBody RegisterForm form) {
         //表单校验
         ValidatorUtils.validateEntity(form);

@@ -60,7 +60,6 @@ public class SysOssController {
         return R.ok().push("page", page);
     }
 
-
     /**
      * 云存储配置信息
      */
@@ -71,7 +70,6 @@ public class SysOssController {
 
         return R.ok().push("config", config);
     }
-
 
     /**
      * 保存云存储配置信息
@@ -97,7 +95,6 @@ public class SysOssController {
 
         return R.ok();
     }
-
 
     /**
      * 上传文件
@@ -125,7 +122,6 @@ public class SysOssController {
 
         return R.ok().push("url", url);
     }
-
 
     /**
      * 删除

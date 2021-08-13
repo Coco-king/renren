@@ -27,7 +27,7 @@ public class DynamicDataSourceTestService {
     @Resource
     private SysUserDao sysUserDao;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void updateUser(Long id) {
         SysUserEntity user = new SysUserEntity();
         user.setUserId(id);
@@ -35,7 +35,7 @@ public class DynamicDataSourceTestService {
         sysUserDao.updateById(user);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @DataSource("slave1")
     public void updateUserBySlave1(Long id) {
         SysUserEntity user = new SysUserEntity();
@@ -45,7 +45,7 @@ public class DynamicDataSourceTestService {
     }
 
     @DataSource("slave2")
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void updateUserBySlave2(Long id) {
         SysUserEntity user = new SysUserEntity();
         user.setUserId(id);

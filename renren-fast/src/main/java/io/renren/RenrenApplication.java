@@ -11,7 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author codecrab
+ * @author Mark sunlightcs@gmail.com
  */
 @SpringBootApplication
 public class RenrenApplication {

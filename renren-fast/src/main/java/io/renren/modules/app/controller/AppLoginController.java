@@ -43,7 +43,7 @@ public class AppLoginController {
      * 登录
      */
     @ApiOperation("登录")
-    @PostMapping("login")
+    @PostMapping("/login")
     public R login(@RequestBody LoginForm form) {
         //表单校验
         ValidatorUtils.validateEntity(form);

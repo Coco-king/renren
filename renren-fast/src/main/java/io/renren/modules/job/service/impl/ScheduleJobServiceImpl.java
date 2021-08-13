@@ -31,6 +31,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @author Mark sunlightcs@gmail.com
+ */
 @Service("scheduleJobService")
 public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobDao, ScheduleJobEntity> implements ScheduleJobService {
 
@@ -60,7 +63,8 @@ public class ScheduleJobServiceImpl extends ServiceImpl<ScheduleJobDao, Schedule
 
         IPage<ScheduleJobEntity> page = this.page(
             new Query<ScheduleJobEntity>().getPage(params),
-            new QueryWrapper<ScheduleJobEntity>().like(StringUtils.isNotBlank(beanName), "bean_name", beanName)
+            new QueryWrapper<ScheduleJobEntity>()
+                .like(StringUtils.isNotBlank(beanName), "bean_name", beanName)
         );
 
         return new PageUtils(page);

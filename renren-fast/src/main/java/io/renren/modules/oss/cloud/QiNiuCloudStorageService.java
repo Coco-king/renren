@@ -23,7 +23,7 @@ import java.io.InputStream;
  *
  * @author Mark sunlightcs@gmail.com
  */
-public class QiNiuCloudStorageService extends CloudStorageService {
+public class QiNiuCloudStorageService extends AbstractCloudStorageService {
 
     private UploadManager uploadManager;
     private String token;

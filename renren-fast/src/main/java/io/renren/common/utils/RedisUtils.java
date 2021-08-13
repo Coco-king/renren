@@ -46,7 +46,7 @@ public class RedisUtils {
     /** 不设置过期时长 */
     public final static long NOT_EXPIRE = -1;
 
-    private final static Gson gson = new Gson();
+    private final static Gson GSON = new Gson();
 
     public void set(String key, Object value, long expire) {
         valueOperations.set(key, toJson(value));
@@ -95,13 +95,13 @@ public class RedisUtils {
                 object instanceof Double || object instanceof Boolean || object instanceof String) {
             return String.valueOf(object);
         }
-        return gson.toJson(object);
+        return GSON.toJson(object);
     }
 
     /**
      * JSON数据，转成Object
      */
     private <T> T fromJson(String json, Class<T> clazz) {
-        return gson.fromJson(json, clazz);
+        return GSON.fromJson(json, clazz);
     }
 }

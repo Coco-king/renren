@@ -13,6 +13,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
+/**
+ * @author Mark sunlightcs@gmail.com
+ */
 public class HttpContextUtils {
 
     public static HttpServletRequest getHttpServletRequest() {

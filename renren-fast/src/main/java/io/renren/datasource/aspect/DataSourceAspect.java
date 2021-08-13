@@ -31,6 +31,7 @@ import java.lang.reflect.Method;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class DataSourceAspect {
+    
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Pointcut("@annotation(io.renren.datasource.annotation.DataSource) || @within(io.renren.datasource.annotation.DataSource)")

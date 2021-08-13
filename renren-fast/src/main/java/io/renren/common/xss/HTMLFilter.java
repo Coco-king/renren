@@ -67,7 +67,7 @@ public final class HTMLFilter {
     private static final Pattern P_RIGHT_ARROW = Pattern.compile(">");
     private static final Pattern P_BOTH_ARROWS = Pattern.compile("<>");
 
-    // @xxx could grow large... maybe use seat's ReferenceMap
+    /** could grow large... maybe use seat's ReferenceMap */
     private static final ConcurrentMap<String, Pattern> P_REMOVE_PAIR_BLANKS = new ConcurrentHashMap<>();
     private static final ConcurrentMap<String, Pattern> P_REMOVE_SELF_BLANKS = new ConcurrentHashMap<>();
 
@@ -164,6 +164,7 @@ public final class HTMLFilter {
      *
      * @param conf map containing configuration. keys match field names.
      */
+    @SuppressWarnings("unchecked")
     public HTMLFilter(final Map<String, Object> conf) {
         assert conf.containsKey("vAllowed") : "configuration requires vAllowed";
         assert conf.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags";
@@ -198,7 +199,7 @@ public final class HTMLFilter {
     }
 
     //---------------------------------------------------------------
-    // my versions of some PHP library functions
+    /** my versions of some PHP library functions */
     public static String chr(final int decimal) {
         return String.valueOf((char) decimal);
     }
@@ -517,8 +518,8 @@ public final class HTMLFilter {
     private String checkEntity(final String preamble, final String term) {
 
         return ";".equals(term) && isValidEntity(preamble)
-                ? '&' + preamble
-                : "&amp;" + preamble;
+            ? '&' + preamble
+            : "&amp;" + preamble;
     }
 
     private boolean isValidEntity(final String entity) {

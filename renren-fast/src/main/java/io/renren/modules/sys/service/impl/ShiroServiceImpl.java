@@ -21,7 +21,10 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.*;
 
-@Service
+/**
+ * @author Mark sunlightcs@gmail.com
+ */
+@Service("shiroService")
 public class ShiroServiceImpl implements ShiroService {
 
     @Resource

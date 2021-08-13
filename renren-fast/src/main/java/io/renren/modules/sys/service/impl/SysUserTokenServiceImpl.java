@@ -17,12 +17,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+/**
+ * @author Mark sunlightcs@gmail.com
+ */
 @Service("sysUserTokenService")
 public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUserTokenEntity> implements SysUserTokenService {
 
     /** 12小时后过期 */
     private final static int EXPIRE = 3600 * 12;
-
 
     @Override
     public R createToken(long userId) {
