@@ -43,7 +43,7 @@ public class RedisConfig {
     }
 
     @Bean
-    public ValueOperations<String, String> valueOperations(RedisTemplate<String, String> redisTemplate) {
+    public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForValue();
     }
 
