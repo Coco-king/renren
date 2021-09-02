@@ -7,9 +7,9 @@
  */
 package io.renren.modules.oss.cloud;
 
-import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
+import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import io.renren.common.exception.RRException;
@@ -36,7 +36,7 @@ public class QiNiuCloudStorageService extends AbstractCloudStorageService {
     }
 
     private void init() {
-        uploadManager = new UploadManager(new Configuration(Zone.autoZone()));
+        uploadManager = new UploadManager(new Configuration(Region.huadong()));
         token = Auth.create(
             config.getQiniuAccessKey(),
             config.getQiniuSecretKey()
@@ -48,7 +48,7 @@ public class QiNiuCloudStorageService extends AbstractCloudStorageService {
         try {
             Response res = uploadManager.put(data, path, token);
             if (!res.isOK()) {
-                throw new RuntimeException("上传七牛出错：" + res.toString());
+                throw new RuntimeException("上传七牛出错：" + res);
             }
         } catch (Exception e) {
             throw new RRException("上传文件失败，请核对七牛配置信息", e);

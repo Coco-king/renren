@@ -7,7 +7,9 @@
  */
 package io.renren.modules.oss.cloud;
 
-import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.model.CannedAccessControlList;
 import io.renren.common.exception.RRException;
 
 import java.io.ByteArrayInputStream;
@@ -20,7 +22,7 @@ import java.io.InputStream;
  */
 public class AliyunCloudStorageService extends AbstractCloudStorageService {
 
-    private OSSClient client;
+    private OSS client;
 
     public AliyunCloudStorageService(CloudStorageConfig config) {
         this.config = config;
@@ -30,11 +32,20 @@ public class AliyunCloudStorageService extends AbstractCloudStorageService {
     }
 
     private void init() {
-        client = new OSSClient(
+        client = new OSSClientBuilder().build(
             config.getAliyunEndPoint(),
             config.getAliyunAccessKeyId(),
             config.getAliyunAccessKeySecret()
         );
+
+        // 判断桶是否存在
+        String bucketName = config.getAliyunBucketName();
+        if (!client.doesBucketExist(bucketName)) {
+            // 不存在则创建桶
+            client.createBucket(bucketName);
+            // 授权
+            client.setBucketAcl(bucketName, CannedAccessControlList.PublicRead);
+        }
     }
 
     @Override

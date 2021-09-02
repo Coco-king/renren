@@ -91,21 +91,23 @@ public class CloudStorageConfig implements Serializable {
     @NotNull(message = "腾讯云AppId不能为空", groups = QCloudGroup.class)
     private Integer qcloudAppId;
 
-    /**腾讯云SecretId*/
+    /** 腾讯云SecretId */
     @NotBlank(message = "腾讯云SecretId不能为空", groups = QCloudGroup.class)
     private String qcloudSecretId;
 
-    /**腾讯云SecretKey*/
+    /** 腾讯云SecretKey */
     @NotBlank(message = "腾讯云SecretKey不能为空", groups = QCloudGroup.class)
     private String qcloudSecretKey;
 
-    /**腾讯云BucketName*/
+    /** 腾讯云存储桶名称，格式：BucketName-APPID */
     @NotBlank(message = "腾讯云BucketName不能为空", groups = QCloudGroup.class)
     private String qcloudBucketName;
 
-    /**腾讯云COS所属地区*/
+    /** 腾讯云COS所属地区 */
     @NotBlank(message = "所属地区不能为空", groups = QCloudGroup.class)
     private String qcloudRegion;
 
-
+    public String getQcloudBucketName() {
+        return qcloudBucketName + "-" + qcloudAppId;
+    }
 }

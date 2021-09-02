@@ -107,12 +107,10 @@ public class SysOssController {
         }
 
         //上传文件
-        String suffix = Objects.requireNonNull(
-            file.getOriginalFilename()).substring(file.getOriginalFilename().lastIndexOf(".")
-        );
-        String url = Objects.requireNonNull(
-            OSSFactory.build()).uploadSuffix(file.getBytes(), suffix
-        );
+        String suffix = Objects.requireNonNull(file.getOriginalFilename())
+            .substring(file.getOriginalFilename().lastIndexOf("."));
+        String url = Objects.requireNonNull(OSSFactory.build())
+            .uploadSuffix(file.getBytes(), suffix);
 
         //保存文件信息
         SysOssEntity ossEntity = new SysOssEntity();
