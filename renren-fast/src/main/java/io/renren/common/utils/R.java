@@ -7,6 +7,8 @@
  */
 package io.renren.common.utils;
 
+import io.renren.common.exception.RRException;
+import lombok.NonNull;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -18,7 +20,7 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  */
 public class R extends HashMap<String, Object> {
-    
+
     private static final long serialVersionUID = 1L;
 
     public R() {
@@ -60,5 +62,27 @@ public class R extends HashMap<String, Object> {
     public R push(String key, Object value) {
         super.put(key, value);
         return this;
+    }
+
+    public int getCode() {
+        Object code = this.get("code");
+        if (code == null) {
+            throw new RRException("获取返回状态码失败，状态码为空");
+        }
+        if (!code.getClass().equals(Integer.class)) {
+            throw new RRException("获取返回状态码失败，状态码不是一个数字");
+        }
+        return (int) code;
+    }
+
+    public <T> T getData(@NonNull Class<T> clazz) {
+        Object data = this.get("data");
+        if (data == null) {
+            return null;
+        }
+        if (!clazz.equals(data.getClass())) {
+            throw new RRException("获取数据失败，实际的类型：" + data.getClass() + "，期望的类型：" + clazz);
+        }
+        return clazz.cast(data);
     }
 }
