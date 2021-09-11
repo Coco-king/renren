@@ -289,6 +289,10 @@ public class GenUtils {
      * 列名转换成Java属性名
      */
     public static String columnToJava(String columnName) {
+        // is_开头表示为布尔类型，把is删掉
+        if (columnName.startsWith("is_")) {
+            columnName = columnName.substring(3);
+        }
         return WordUtils.capitalizeFully(columnName, new char[]{'_'}).replace("_", "");
     }
 
