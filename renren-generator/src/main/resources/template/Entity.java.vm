@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 #if(${hasBigDecimal})
@@ -41,6 +43,9 @@ public class ${className}Entity implements Serializable {
 #end
 #if($column.columnName.startsWith('is_'))
     @TableField("$column.columnName")
+#end
+#if($column.attrType == 'Long' || $column.attrType == 'Integer')
+    @JsonSerialize(using = ToStringSerializer.class)
 #end
     private $column.attrType $column.attrname;
 #end
